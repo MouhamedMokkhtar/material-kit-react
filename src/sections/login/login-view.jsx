@@ -9,9 +9,13 @@ import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { alpha, useTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useDispatch, useSelector } from 'react-redux';
+import { authUser } from 'src/store/Auth/auth.action';
 
 import { useRouter } from 'src/routes/hooks';
 
@@ -19,6 +23,7 @@ import { bgGradient } from 'src/theme/css';
 
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
+import { Navigate } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -26,22 +31,68 @@ export default function LoginView() {
   const theme = useTheme();
 
   const router = useRouter();
+  const dispatch = useDispatch();
+
 
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [localError, setLocalError] = useState('');
 
   const handleClick = () => {
-    router.push('/dashboard');
+    if (!username?.trim()?.length || !password?.trim().length) {
+      setLocalError('Email and Password are required');
+      return;
+    }
+    setLocalError('');
+    const userBody = {
+      username: username.trim(),
+      password: password.trim(),
+    };
+    setLoading(true);
+
+    dispatch(authUser(userBody))
+    .then(() => {
+      setLoading(false);
+      
+      router.push('/');
+      console.log('Login success');
+      //<Navigate to="/dashboard" />;  
+    })
+    .catch((err) => {
+      console.error('Login failed:', err);
+      setLocalError('Email or Password are wrong');
+    });
+};
+
+  
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
 
   const renderForm = (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField  value={username}
+          onChange={handleUsernameChange}
+          error={Boolean(localError)}
+          helperText={localError ? 'Username and Password are required' : ''}
+          />
 
         <TextField
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}
+          value={password}
+          onChange={handlePasswordChange}
+          error={Boolean(localError)}
+          helperText={localError ? 'Username and Password are required' : ''}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -53,6 +104,13 @@ export default function LoginView() {
           }}
         />
       </Stack>
+
+      {localError && (
+        <Alert severity="error" sx={{ mt: 2 }}>
+          <AlertTitle>Error</AlertTitle>
+          {localError}
+        </Alert>
+      )}
 
       <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
         <Link variant="subtitle2" underline="hover">
@@ -66,6 +124,7 @@ export default function LoginView() {
         type="submit"
         variant="contained"
         color="inherit"
+        loading={loading}
         onClick={handleClick}
       >
         Login

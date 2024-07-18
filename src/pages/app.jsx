@@ -4,6 +4,9 @@ import { AppView } from 'src/sections/overview/view';
 
 // ----------------------------------------------------------------------
 
+const SP = "SP";
+const PSP = "PSP";
+
 export default function AppPage() {
   return (
     <>
@@ -11,7 +14,7 @@ export default function AppPage() {
         <title> Dashboard | Minimal UI </title>
       </Helmet>
 
-      <AppView />
+      <AppView role={SP}/>
     </>
   );
 }

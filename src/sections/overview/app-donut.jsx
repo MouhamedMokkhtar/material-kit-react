@@ -7,6 +7,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import { fNumber } from 'src/utils/format-number';
 
 import Chart, { useChart } from 'src/components/chart';
+import { Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -20,15 +21,15 @@ const StyledChart = styled(Chart)(({ theme }) => ({
     height: `100% !important`,
   },
   '& .apexcharts-legend': {
-    height: LEGEND_HEIGHT,
-    borderTop: `dashed 1px ${theme.palette.divider}`,
-    top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`,
+    //height: LEGEND_HEIGHT,
+    // borderTop: `dashed 1px ${theme.palette.divider}`,
+    // top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`,
   },
 }));
 
 // ----------------------------------------------------------------------
 
-export default function AppCurrentVisits({ title, subheader, chart, ...other }) {
+export default function AppDonut({ title, subheader, chart, ...other }) {
   const theme = useTheme();
 
   const { colors, series, options } = chart;
@@ -41,24 +42,21 @@ export default function AppCurrentVisits({ title, subheader, chart, ...other }) 
         enabled: true,
       },
     },
-    colors: [theme.palette.primary.main,theme.palette.secondary.main],
+    colors: [theme.palette.primary.main,theme.palette.secondary.main, theme.palette.primary.lighter],
     labels: series.map((i) => {
-      return `${i.label} (${i.value}%)`;
-  }),
+        return `${i.label} (${i.value}%)`;
+    }),
     stroke: {
       colors: [theme.palette.background.paper],
     },
     legend: {
       floating: true,
-      position: 'bottom',
-      horizontalAlign: 'center',
-      fontSize: "14px"
+      position: 'left',
+      horizontalAlign: 'left',
+      fontSize: "16px"
     },
     dataLabels: {
-      enabled: true,
-      dropShadow: {
-        enabled: false,
-      },
+      enabled: false,
     },
     tooltip: {
       fillSeriesColor: false,
@@ -75,6 +73,7 @@ export default function AppCurrentVisits({ title, subheader, chart, ...other }) 
           labels: {
             show: false,
           },
+          size: '60%'
         },
       },
     },
@@ -85,19 +84,21 @@ export default function AppCurrentVisits({ title, subheader, chart, ...other }) 
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} sx={{ mb: 5 }} />
 
-      <StyledChart
+     <Box sx={{width: '100%', marginLeft: '10%'}}>
+     <StyledChart
         dir="ltr"
-        type="pie"
+        type="donut"
         series={chartSeries}
         options={chartOptions}
         width="100%"
         height={280}
       />
+     </Box>
     </Card>
   );
 }
 
-AppCurrentVisits.propTypes = {
+AppDonut.propTypes = {
   chart: PropTypes.object,
   subheader: PropTypes.string,
   title: PropTypes.string,

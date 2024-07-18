@@ -15,110 +15,137 @@ import AppWidgetSummary from '../app-widget-summary';
 import AppTrafficBySite from '../app-traffic-by-site';
 import AppCurrentSubject from '../app-current-subject';
 import AppConversionRates from '../app-conversion-rates';
+import { Box, Button, useTheme } from '@mui/material';
+import AppDonut from '../app-donut';
 
 // ----------------------------------------------------------------------
 
-export default function AppView() {
+export default function AppView({role}) {
+  const isSP = role === "SP";
   return (
     <Container maxWidth="xl">
-      <Typography variant="h4" sx={{ mb: 5 }}>
-        Hi, Welcome back 👋
+      <Box sx={isSP ? {} : {display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
+      <Typography variant="h3" sx={{ mb: 5 }}>
+        Dashboard
       </Typography>
+     {!isSP && <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
+          Add new service
+      </Button>}
+      </Box>
+     
 
       <Grid container spacing={3}>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={4} md={4}>
           <AppWidgetSummary
-            title="Weekly Sales"
-            total={714000}
+            title="Total Revenue"
+            currency
+            variant='secondary'
+            total={"4,650"}
             color="success"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
           />
         </Grid>
 
-        <Grid xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={4} md={4}>
           <AppWidgetSummary
-            title="New Users"
-            total={1352831}
+            title="Total PSP"
+            total={4}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
         </Grid>
 
-        <Grid xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={4} md={4}>
           <AppWidgetSummary
-            title="Item Orders"
-            total={1723315}
+            title="Total Services"
+            total={8}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
           />
         </Grid>
 
-        <Grid xs={12} sm={6} md={3}>
+        {/* <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
             title="Bug Reports"
             total={234}
             color="error"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
           />
-        </Grid>
+        </Grid> */}
 
-        <Grid xs={12} md={6} lg={8}>
+        <Grid xs={12} md={isSP ? 6 : 12} lg={isSP ? 8 : 12}>
           <AppWebsiteVisits
-            title="Website Visits"
-            subheader="(+43%) than last year"
+            title="Revenue per date"
+            // subheader="(+43%) than last year"
             chart={{
               labels: [
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec',
               ],
               series: [
                 {
-                  name: 'Team A',
+                  name: 'Revenue',
                   type: 'column',
                   fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
-                },
-                {
-                  name: 'Team B',
-                  type: 'area',
-                  fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
-                },
-                {
-                  name: 'Team C',
-                  type: 'line',
-                  fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
-                },
+                  data: [5600, 1500,3200, 3500, 5000, 2000, 1800, 4000, 3800, 4200,4500,6000],
+                }
               ],
             }}
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={4}>
+        <Grid xs={12} md={6} lg={isSP ? 4 : 6}>
           <AppCurrentVisits
-            title="Current Visits"
+            title="Revenue per payment method"
             chart={{
               series: [
-                { label: 'America', value: 4344 },
-                { label: 'Asia', value: 5435 },
-                { label: 'Europe', value: 1443 },
-                { label: 'Africa', value: 4443 },
+                { label: 'Bank Card', value: 65 },
+                { label: 'Wallet payment', value: 35 },
+
               ],
             }}
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={8}>
+        {isSP &&<Grid xs={12} md={6} lg={6}>
+          <AppDonut
+            title="Revenue per PSP"
+            chart={{
+              series: [
+                { label: 'Flouci', value: 65 },
+                { label: 'X Company', value: 25 },
+                { label: 'X Company', value: 10 },
+
+              ],
+            }}
+          />
+        </Grid>}
+
+        <Grid xs={12} md={6} lg={6}>
+          <AppDonut
+            title="Revenue per services"
+            chart={{
+              series: [
+                { label: 'Flouci', value: 65 },
+                { label: 'X Company', value: 25 },
+                { label: 'X Company', value: 10 },
+
+              ],
+            }}
+          />
+        </Grid>
+
+        {/* <Grid xs={12} md={6} lg={8}>
           <AppConversionRates
             title="Conversion Rates"
             subheader="(+43%) than last year"
@@ -164,9 +191,9 @@ export default function AppView() {
               postedAt: faker.date.recent(),
             }))}
           />
-        </Grid>
+        </Grid> */}
 
-        <Grid xs={12} md={6} lg={4}>
+        {/* <Grid xs={12} md={6} lg={4}>
           <AppOrderTimeline
             title="Order Timeline"
             list={[...Array(5)].map((_, index) => ({
@@ -223,7 +250,7 @@ export default function AppView() {
               { id: '5', name: 'Sprint Showcase' },
             ]}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );

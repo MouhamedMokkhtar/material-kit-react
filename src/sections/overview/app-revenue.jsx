@@ -15,40 +15,27 @@ export default function AppWebsiteVisits({ title, subheader, chart, ...other }) 
     colors,
     plotOptions: {
       bar: {
-        columnWidth: '80%',
+        columnWidth: '16%',
       },
     },
     fill: {
       type: series.map((i) => i.fill),
-      opacity: 0.5,
-
     },
-    
-stroke: {
-  width: 0,
-},
     labels,
     xaxis: {
-      type: 'string',
-    },
-    yaxis: {
-      labels: {
-        formatter: (value) => {
-          return `TND ${value.toFixed(0)}`;
-        },
-      },
+      type: 'datetime',
     },
     tooltip: {
       shared: true,
       intersect: false,
-      // y: {
-      //   formatter: (value) => {
-      //     if (typeof value !== 'undefined') {
-      //       return `${value.toFixed(0)} TND`;
-      //     }
-      //     return value;
-      //   },
-      // },
+      y: {
+        formatter: (value) => {
+          if (typeof value !== 'undefined') {
+            return `${value.toFixed(0)} visits`;
+          }
+          return value;
+        },
+      },
     },
     ...options,
   });
@@ -59,7 +46,7 @@ stroke: {
 
       <Box sx={{ p: 3, pb: 1 }}>
         <Chart
-          dir="ltr"
+        //   dir="ltr"
           type="line"
           series={series}
           options={chartOptions}

@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 
-import { users } from 'src/_mock/user';
+//import { users } from 'src/_mock/user';
 
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -21,10 +21,13 @@ import UserTableHead from '../user-table-head';
 import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
+import { activitiesMocks } from '../mocks/activities-mocks';
+import DateRangePicker from 'src/components/date-range-picker';
+import { Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-export default function UserPage() {
+export default function ActivitiesPage() {
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -47,7 +50,7 @@ export default function UserPage() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = users.map((n) => n.name);
+      const newSelecteds = activitiesMocks.map((n) => n.client_name);
       setSelected(newSelecteds);
       return;
     }
@@ -87,7 +90,8 @@ export default function UserPage() {
   };
 
   const dataFiltered = applyFilter({
-    inputData: users,
+    //inputData: users,
+    inputData: activitiesMocks,
     comparator: getComparator(order, orderBy),
     filterName,
   });
@@ -95,13 +99,21 @@ export default function UserPage() {
   const notFound = !dataFiltered.length && !!filterName;
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Users</Typography>
+      <Typography variant="h3">
+        Activities
+      </Typography>
 
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
-          New User
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <DateRangePicker />
+          <Button variant="contained" color="inherit">
+          Export
         </Button>
+
+        </Box>
+
+       
       </Stack>
 
       <Card>
@@ -117,31 +129,39 @@ export default function UserPage() {
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
-                rowCount={users.length}
+                rowCount={activitiesMocks.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: 'name', label: 'Name' },
-                  { id: 'company', label: 'Company' },
-                  { id: 'role', label: 'Role' },
-                  { id: 'isVerified', label: 'Verified', align: 'center' },
-                  { id: 'status', label: 'Status' },
+                  { id: 'activity_type', label: 'Status' },
+                  { id: 'reference', label: 'Reference' },
+                  { id: 'product_id', label: 'Product ID' },
+                  { id: 'creation_date', label: 'Date' },
+                  { id: 'psp_solution_name', label: 'Solution' },
+                  { id: 'provider_name', label: 'Provider' },
                   { id: '' },
                 ]}
               />
               <TableBody>
                 {dataFiltered
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
+                  .map((row, index) => (
                     <UserTableRow
                       key={row.id}
-                      name={row.name}
-                      role={row.role}
-                      status={row.status}
-                      company={row.company}
-                      avatarUrl={row.avatarUrl}
-                      isVerified={row.isVerified}
+                      status={row.activity_type}
+                      reference={row.reference}
+                      productId={row.product_id}
+                      date={row.creation_date}
+                      solution={row.psp_solution_name}
+                      providerName={row.provider_name}
+                      providerAvatar={`/assets/images/avatars/avatar_${index + 1}.jpg`}
+                      // name={row.client_name}
+                      // role={row.role}
+                      
+                      // company={row.company}
+                      // avatarUrl={row.avatarUrl}
+                      // isVerified={row.isVerified}
                       selected={selected.indexOf(row.name) !== -1}
                       handleClick={(event) => handleClick(event, row.name)}
                     />
@@ -149,7 +169,7 @@ export default function UserPage() {
 
                 <TableEmptyRows
                   height={77}
-                  emptyRows={emptyRows(page, rowsPerPage, users.length)}
+                  emptyRows={emptyRows(page, rowsPerPage, activitiesMocks.length)}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -161,7 +181,7 @@ export default function UserPage() {
         <TablePagination
           page={page}
           component="div"
-          count={users.length}
+          count={activitiesMocks.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           rowsPerPageOptions={[5, 10, 25]}

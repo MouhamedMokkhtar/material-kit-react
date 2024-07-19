@@ -13,17 +13,19 @@ import IconButton from '@mui/material/IconButton';
 
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
+import { Switch } from '@mui/material';
+
+const formatDate = (date) =>
+  `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
 
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({
+export default function ProductTableRow({
+  isAvailable,
   selected,
-  name,
-  avatarUrl,
-  company,
-  role,
-  isVerified,
-  status,
+  productId,
+  type,
+  acceptPromoCode,
   handleClick,
 }) {
   const [open, setOpen] = useState(null);
@@ -36,6 +38,7 @@ export default function UserTableRow({
     setOpen(null);
   };
 
+
   return (
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
@@ -43,30 +46,48 @@ export default function UserTableRow({
           <Checkbox disableRipple checked={selected} onChange={handleClick} />
         </TableCell>
 
-        <TableCell component="th" scope="row" padding="none">
+        {/* <TableCell>
+          <Label color={statusData[status]}>{status}</Label>
+        </TableCell> */}
+
+        
+        <TableCell>
+        <Switch defaultChecked={isAvailable} />
+         </TableCell>
+
+        <TableCell>{productId}</TableCell>
+
+        <TableCell>{type}</TableCell>
+
+        <TableCell>
+        <Switch defaultChecked={acceptPromoCode} /></TableCell>
+
+        {/* <TableCell>{formatDate(new Date(date))}</TableCell> */}
+
+        {/* <TableCell>{solution}</TableCell> */}
+{/* 
+         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>
-            <Avatar alt={name} src={avatarUrl} />
+            <Avatar alt={providerName} src={providerAvatar} />
             <Typography variant="subtitle2" noWrap>
-              {name}
+              {providerName}
             </Typography>
           </Stack>
-        </TableCell>
-
+        </TableCell> */}
+{/*
         <TableCell>{company}</TableCell>
 
         <TableCell>{role}</TableCell>
 
         <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>
 
-        <TableCell>
-          <Label color={(status === 'banned' && 'error') || 'success'}>{status}</Label>
-        </TableCell>
+*/}
 
         <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
-        </TableCell>
+        </TableCell> 
       </TableRow>
 
       <Popover
@@ -76,24 +97,35 @@ export default function UserTableRow({
         anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         PaperProps={{
-          sx: { width: 140 },
+          sx: { width: 180 },
         }}
       >
-        <MenuItem onClick={handleCloseMenu}>
+        {/* <MenuItem onClick={handleCloseMenu}>
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit
+        </MenuItem> */}
+        <MenuItem onClick={handleCloseMenu}>
+          <b>Actions</b>
         </MenuItem>
+        <MenuItem onClick={handleCloseMenu}>
+          Edit
+        </MenuItem>
+        <div style={{ borderTop: '1px solid #e0e0e0', margin: '5px 0' }} />
+        <MenuItem onClick={handleCloseMenu}>
+          View service info
+        </MenuItem>
+        
 
-        <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
+        {/* <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
           Delete
-        </MenuItem>
+        </MenuItem> */}
       </Popover>
     </>
   );
 }
 
-UserTableRow.propTypes = {
+ProductTableRow.propTypes = {
   avatarUrl: PropTypes.any,
   company: PropTypes.any,
   handleClick: PropTypes.func,

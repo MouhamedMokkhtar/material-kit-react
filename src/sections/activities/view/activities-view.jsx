@@ -27,7 +27,7 @@ import { Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-export default function ActivitiesPage() {
+export default function ActivitiesPage({isBillView = false}) {
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -47,6 +47,8 @@ export default function ActivitiesPage() {
       setOrderBy(id);
     }
   };
+
+
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -102,7 +104,7 @@ export default function ActivitiesPage() {
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
       <Typography variant="h3">
-        Activities
+        {!isBillView ? "Activities" : "Bills"}
       </Typography>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -164,6 +166,7 @@ export default function ActivitiesPage() {
                       // isVerified={row.isVerified}
                       selected={selected.indexOf(row.name) !== -1}
                       handleClick={(event) => handleClick(event, row.name)}
+                      isBillView={isBillView}
                     />
                   ))}
 

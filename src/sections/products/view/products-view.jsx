@@ -20,11 +20,12 @@ import { Box } from '@mui/material';
 import ProductTableRow from '../product-table-row';
 import TableNoData from '../../activities/table-no-data';
 import UserTableHead from '../../activities/user-table-head';
-import UserTableToolbar from '../../activities/user-table-toolbar';
+
 import { activitiesMocks } from 'src/sections/activities/mocks/activities-mocks';
 import { applyFilter, emptyRows, getComparator } from 'src/sections/activities/utils';
 import TableEmptyRows from 'src/sections/activities/table-empty-rows';
 import { productsMocks } from '../mocks/products-mocks';
+import UserTableToolbar from '../user-table-toolbar';
 
 // ----------------------------------------------------------------------
 

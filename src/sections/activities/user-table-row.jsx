@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
+import BillModal from '../bill/bill-modal';
 
 const formatDate = (date) =>
   `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
@@ -29,6 +30,7 @@ export default function UserTableRow({
   providerAvatar,
   status,
   handleClick,
+  isBillView,
 }) {
   const [open, setOpen] = useState(null);
 
@@ -41,12 +43,12 @@ export default function UserTableRow({
   };
 
   const statusData = {
-    paid : "success",
-    viewed : "info",
-    reserved : "warning",
-    banned : "error",
-  }
-  console.log("status",status);
+    paid: 'success',
+    viewed: 'info',
+    reserved: 'warning',
+    banned: 'error',
+  };
+  console.log('status', status);
 
   return (
     <>
@@ -59,8 +61,7 @@ export default function UserTableRow({
           <Label color={statusData[status]}>{status}</Label>
         </TableCell>
 
-        
-        <TableCell>{reference}</TableCell>
+        <TableCell>{isBillView ? <BillModal>{reference}</BillModal> : reference}</TableCell>
 
         <TableCell>{productId}</TableCell>
 
@@ -68,7 +69,7 @@ export default function UserTableRow({
 
         <TableCell>{solution}</TableCell>
 
-         <TableCell component="th" scope="row" padding="none">
+        <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>
             <Avatar alt={providerName} src={providerAvatar} />
             <Typography variant="subtitle2" noWrap>
@@ -76,7 +77,7 @@ export default function UserTableRow({
             </Typography>
           </Stack>
         </TableCell>
-{/*
+        {/*
         <TableCell>{company}</TableCell>
 
         <TableCell>{role}</TableCell>
@@ -89,7 +90,7 @@ export default function UserTableRow({
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
-        </TableCell> 
+        </TableCell>
       </TableRow>
 
       <Popover
@@ -109,16 +110,10 @@ export default function UserTableRow({
         <MenuItem onClick={handleCloseMenu}>
           <b>Actions</b>
         </MenuItem>
-        <MenuItem onClick={handleCloseMenu}>
-          Copy ID
-        </MenuItem>
+        <MenuItem onClick={handleCloseMenu}>Copy ID</MenuItem>
         <div style={{ borderTop: '1px solid #e0e0e0', margin: '5px 0' }} />
-        <MenuItem onClick={handleCloseMenu}>
-          View PSP info
-        </MenuItem>
-        <MenuItem onClick={handleCloseMenu}>
-          View payment details
-        </MenuItem>
+        <MenuItem onClick={handleCloseMenu}>View PSP info</MenuItem>
+        <MenuItem onClick={handleCloseMenu}>View payment details</MenuItem>
 
         {/* <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />

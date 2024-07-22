@@ -21,8 +21,9 @@ import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
 
 import { NAV } from './config-layout';
-import navConfig from './config-navigation';
+import navConfig, { navUserConfig } from './config-navigation';
 import Telecom from 'src/icons/Telecom';
+import { Divider } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -72,9 +73,13 @@ export default function Nav({ openNav, onCloseNav }) {
   );
 
   const renderUpgrade = (
-    <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
-      <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
-        <Box
+    <Box sx={{ pb: 3, mt: 10 }}>
+      <Divider  variant="middle" sx={{ my: 3 }} />
+      <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
+      {navUserConfig.map((item) => (  
+        <NavItem key={item.title} item={item} />
+      ))}
+        {/* <Box
           component="img"
           src="/assets/illustrations/illustration_avatar.png"
           sx={{ width: 100, position: 'absolute', top: -50 }}
@@ -95,7 +100,7 @@ export default function Nav({ openNav, onCloseNav }) {
           color="inherit"
         >
           Upgrade to Pro
-        </Button>
+        </Button> */}
       </Stack>
     </Box>
   );

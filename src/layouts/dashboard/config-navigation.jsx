@@ -6,6 +6,19 @@ const icon = (name) => (
   <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
 );
 
+export const navUserConfig = [
+  {
+    title: 'Change Password',
+    path: '/reset-password',
+    icon: icon('ic_analytics'),
+  },
+  {
+    title: 'Logout',
+    path: '/login',
+    icon: icon('ic_user'),
+  }
+]
+
 const navConfig = [
   {
     title: 'dashboard',
@@ -20,6 +33,21 @@ const navConfig = [
   {
     title: 'product',
     path: '/products',
+    icon: icon('ic_cart'),
+  },
+  {
+    title: 'bill',
+    path: '/bills',
+    icon: icon('ic_cart'),
+  },
+  {
+    title: 'token',
+    path: '/token',
+    icon: icon('ic_cart'),
+  },
+  {
+    title: 'payment method',
+    path: '/payment-method',
     icon: icon('ic_cart'),
   },
   {

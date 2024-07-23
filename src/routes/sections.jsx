@@ -14,6 +14,7 @@ export const BillPage = lazy(() => import('src/pages/bill'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const TokenPage = lazy(() => import('src/pages/token-page'));
 export const PaymentMethodPage = lazy(() => import('src/pages/payment-method'));
+export const SandboxPage = lazy(() => import('src/pages/sandbox'));
 
 // ----------------------------------------------------------------------
 
@@ -40,6 +41,7 @@ export default function Router() {
         { path: 'payment-method', element: <PaymentMethodPage /> },
         { path: 'reset-password', element: <ResetPasswordPage /> },
         { path: 'token', element: <TokenPage /> },
+        { path: 'sandbox', element: <SandboxPage /> },
       ],
     },
     {

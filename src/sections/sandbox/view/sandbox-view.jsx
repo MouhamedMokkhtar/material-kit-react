@@ -10,26 +10,34 @@ import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 
+//import { users } from 'src/_mock/user';
 
-
+import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 
-
+import TableNoData from '../table-no-data';
+import UserTableRow from '../user-table-row';
+import UserTableHead from '../user-table-head';
+import TableEmptyRows from '../table-empty-rows';
+import UserTableToolbar from '../user-table-toolbar';
+import { emptyRows, applyFilter, getComparator } from '../utils';
+import { sandMocks } from '../mocks/activities-mocks';
 import DateRangePicker from 'src/components/date-range-picker';
 import { Box } from '@mui/material';
-import ProductTableRow from '../product-table-row';
-import TableNoData from '../../activities/table-no-data';
-import UserTableHead from '../../activities/user-table-head';
-
-import { activitiesMocks } from 'src/sections/activities/mocks/activities-mocks';
-import { applyFilter, emptyRows, getComparator } from 'src/sections/activities/utils';
-import TableEmptyRows from 'src/sections/activities/table-empty-rows';
-import { productsMocks } from '../mocks/products-mocks';
-import UserTableToolbar from '../user-table-toolbar';
 
 // ----------------------------------------------------------------------
 
-export default function ProductsPage() {
+
+function shuffleArray(array) {
+  let newArray = [...array]; 
+  for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1)); 
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; 
+  }
+  return newArray;
+}
+
+export default function SandboxPage() {
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -42,6 +50,8 @@ export default function ProductsPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const [sandBoxData, setSandBoxData] = useState(sandMocks);
+
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
     if (id !== '') {
@@ -50,9 +60,16 @@ export default function ProductsPage() {
     }
   };
 
+
+  const handleRandomizeData = () => {
+    console.log('randomizing data');
+    setSandBoxData(shuffleArray(sandMocks));
+  };
+
+
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = productsMocks.map((n) => n.client_name);
+      const newSelecteds = sandBoxData.map((n) => n.client_name);
       setSelected(newSelecteds);
       return;
     }
@@ -93,7 +110,7 @@ export default function ProductsPage() {
 
   const dataFiltered = applyFilter({
     //inputData: users,
-    inputData: productsMocks,
+    inputData: sandBoxData,
     comparator: getComparator(order, orderBy),
     filterName,
   });
@@ -104,18 +121,9 @@ export default function ProductsPage() {
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
       <Typography variant="h3">
-        Products
+        Sandbox
       </Typography>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <DateRangePicker />
-          <Button variant="contained" color="inherit">
-          Add
-        </Button>
-
-        </Box>
-
-       
       </Stack>
 
       <Card>
@@ -123,40 +131,51 @@ export default function ProductsPage() {
           numSelected={selected.length}
           filterName={filterName}
           onFilterName={handleFilterByName}
+          handleRandomizeData={handleRandomizeData}
         />
-
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
-                rowCount={productsMocks.length}
+                rowCount={sandBoxData.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: 'is_available', label: 'Availability' },
-                  { id: 'product_id', label: 'ID' },
-                  { id: 'type', label: 'Type' },
-                  { id: 'accept_promo_code', label: 'Promo Code' },
-                //   { id: 'creation_date', label: 'Date' },
-                //   { id: 'psp_solution_name', label: 'Solution' },
-                //   { id: 'provider_name', label: 'Provider' },
-                  { id: '' },
+                  { id: 'reference', label: 'Reference' },
+                  { id: 'client_name', label: 'Client Name' },
+                  { id: 'amount', label: 'Amount' },
+                  { id: 'cin', label: 'Cin' },
+                  { id: 'matricule', label: 'Matericule Fiscale' },
+                  { id: 'code_client', label: 'Client Code' },
+                  { id: 'numero_contract', label: 'Client Code' },
+                  { id: 'status', label: 'Client Code' },
                 ]}
               />
+
+
               <TableBody>
                 {dataFiltered
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => (
-                    <ProductTableRow
-                      key={row.id}
-                      isAvailable={row.is_available}
-                      productId={row.product_id}
-                      type={row.type}
-                      acceptPromoCode={row.accept_promo_code}
+                    <UserTableRow
+                      key={index}
+                      reference={row.reference}
+                      clientName={row.client_name}
+                      cin={row.cin}
+                      amount={row.amount}
+                      matricule={row.matricule}
+                      codeClient={row.code_client}
+                      numeroContract={row.numero_contract}
+                      status={row.status}
+                      // name={row.client_name}
+                      // role={row.role}
                       
+                      // company={row.company}
+                      // avatarUrl={row.avatarUrl}
+                      // isVerified={row.isVerified}
                       selected={selected.indexOf(row.name) !== -1}
                       handleClick={(event) => handleClick(event, row.name)}
                     />
@@ -164,7 +183,7 @@ export default function ProductsPage() {
 
                 <TableEmptyRows
                   height={77}
-                  emptyRows={emptyRows(page, rowsPerPage, productsMocks.length)}
+                  emptyRows={emptyRows(page, rowsPerPage, sandBoxData.length)}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -176,7 +195,7 @@ export default function ProductsPage() {
         <TablePagination
           page={page}
           component="div"
-          count={productsMocks.length}
+          count={sandMocks.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           rowsPerPageOptions={[5, 10, 25]}

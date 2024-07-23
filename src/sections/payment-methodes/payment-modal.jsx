@@ -46,7 +46,7 @@ const PaymentModal = ({ open, handleClose, handleAdd }) => {
         compteActive: activeAccount,
       },
     ]);
-    handleClose();
+    onClose();
   };
   const style = {
     position: 'absolute',

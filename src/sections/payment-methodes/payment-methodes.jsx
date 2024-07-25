@@ -58,18 +58,18 @@ const PaymentMethodsView = () => {
             <Table sx={{ width: '100%' }}>
               <PaymentTableHead
                 headLabel={[
-                  { id: 'banque', label: 'Banque' },
-                  { id: 'RIB', label: 'RIB' },
-                  { id: 'compte_active', label: 'Compte active' },
+                  { id: 'wireTransfer', label: 'Wire Transfer' },
+                  { id: 'wallet', label: 'Wallet' },
+                  { id: 'by_card', label: 'By Card' },
                 ]}
               />
               <TableBody>
                 {accounts.map((row, index) => (
                   <PaymentTableRow
                     key={index}
-                    banque={row.banque}
-                    RIB={row.RIB}
-                    compteActive={row.compteActive}
+                    wireTransfer={row.banque}
+                    wallet={row.RIB}
+                    byCard={row.compteActive}
                   />
                 ))}
               </TableBody>

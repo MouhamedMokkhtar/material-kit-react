@@ -3,19 +3,19 @@ import React from 'react'
 
 
 
-const PaymentTableRow = ({banque, RIB, compteActive}) => {
+const PaymentTableRow = ({wireTransfer, wallet, byCard}) => {
   return (
     <TableRow >
    
     
     <TableCell align={"center"}>
-    {banque}
+    {wireTransfer}
      </TableCell >
 
-    <TableCell align={"center"}>{RIB}</TableCell>
+    <TableCell align={"center"}>{wallet}</TableCell>
 
     <TableCell align={"center"}>
-    <Switch defaultChecked={compteActive} /></TableCell>
+    <Switch defaultChecked={byCard} /></TableCell>
     </TableRow>
 
  

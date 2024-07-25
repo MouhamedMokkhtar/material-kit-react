@@ -41,7 +41,7 @@ export default function AppCurrentVisits({ title, subheader, chart, ...other }) 
         enabled: true,
       },
     },
-    colors: [theme.palette.primary.main,theme.palette.secondary.main],
+    colors: [theme.palette.primary.main,theme.palette.secondary.secondMain,theme.palette.secondary.thirdMain],
     labels: series.map((i) => {
       return `${i.label} (${i.value}%)`;
   }),

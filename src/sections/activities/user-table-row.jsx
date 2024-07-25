@@ -27,6 +27,9 @@ export default function UserTableRow({
   date,
   solution,
   providerName,
+  balanceName,
+  amountName,
+  amountToPay,
   providerAvatar,
   status,
   handleClick,
@@ -77,6 +80,11 @@ export default function UserTableRow({
             </Typography>
           </Stack>
         </TableCell>
+
+        <TableCell>{balanceName}</TableCell>
+        <TableCell>{amountName}</TableCell>
+        <TableCell>{amountToPay}</TableCell>
+
         {/*
         <TableCell>{company}</TableCell>
 

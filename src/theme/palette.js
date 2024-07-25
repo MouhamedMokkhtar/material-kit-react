@@ -30,6 +30,8 @@ export const secondary = {
   lighter: '#EFD6FF',
   light: '#C684FF',
   main: '#D7D3FF',
+  secondMain: '#9588fc',
+  thirdMain: '#bcb4fa',
   dark: '#5119B7',
   darker: '#27097A',
   contrastText: '#FFFFFF',

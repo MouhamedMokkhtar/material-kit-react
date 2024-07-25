@@ -9,6 +9,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       creation_date: "2024-07-12T10:37:17.508496+01:00"
     },
     {
@@ -18,7 +21,10 @@ export const activitiesMocks = [
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
-      activity_type: "reserved",
+      activity_type: "paid",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       creation_date: "2024-07-12T10:37:00.602193+01:00"
     },
     {
@@ -28,7 +34,10 @@ export const activitiesMocks = [
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
-      activity_type: "reserved",
+      activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -43,7 +52,10 @@ export const activitiesMocks = [
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
-      activity_type: "reserved",
+      activity_type: "rejected",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -58,7 +70,10 @@ export const activitiesMocks = [
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
-      activity_type: "reserved",
+      activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -74,6 +89,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -89,6 +107,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -104,6 +125,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -119,6 +143,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -134,6 +161,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -149,6 +179,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -164,6 +197,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -179,6 +215,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -194,6 +233,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -209,6 +251,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -224,6 +269,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -239,6 +287,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -254,6 +305,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -269,6 +323,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -284,6 +341,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "7Q5QP0R22K",
         client_cin: "XO445774"
@@ -298,6 +358,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -313,6 +376,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44",
@@ -328,6 +394,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "paid",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {},
       creation_date: "2024-07-10T16:43:57.547672+01:00"
     },
@@ -339,6 +408,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "318053",
         product_id: "44",
@@ -354,6 +426,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -368,6 +443,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -382,6 +460,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -396,6 +477,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -410,6 +494,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -424,6 +511,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -438,6 +528,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "7Q5QP0R22K",
         client_cin: "XO445774"
@@ -452,6 +545,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -466,6 +562,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "7Q5QP0R22K",
         client_cin: "XO445774"
@@ -480,6 +579,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "334783",
         product_id: "44"
@@ -494,6 +596,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "7Q5QP0R22K",
         client_cin: "XO445774"
@@ -508,6 +613,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "DQMTWZMUZQ",
         client_cin: "GM500506"
@@ -522,6 +630,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -536,6 +647,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -550,6 +664,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "paid",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {},
       creation_date: "2024-07-09T12:32:10.644725+01:00"
     },
@@ -561,6 +678,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "318053",
         product_id: "44"
@@ -575,6 +695,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -589,6 +712,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "paid",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {},
       creation_date: "2024-07-09T12:28:45.458249+01:00"
     },
@@ -600,6 +726,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -614,6 +743,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -628,6 +760,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -642,6 +777,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -656,6 +794,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -670,6 +811,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -684,6 +828,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -698,6 +845,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -712,6 +862,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -726,6 +879,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -740,6 +896,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "318053",
         product_id: "44"
@@ -754,6 +913,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -768,6 +930,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -782,6 +947,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "paid",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {},
       creation_date: "2024-07-09T12:22:30.760540+01:00"
     },
@@ -793,6 +961,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "318053",
         product_id: "44"
@@ -807,6 +978,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -821,6 +995,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "paid",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {},
       creation_date: "2024-07-09T12:20:23.873972+01:00"
     },
@@ -832,6 +1009,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -846,6 +1026,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -860,6 +1043,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "paid",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {},
       creation_date: "2024-07-09T12:15:39.783094+01:00"
     },
@@ -871,6 +1057,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -885,6 +1074,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "reserved",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         reference: "318053",
         product_id: "44"
@@ -899,6 +1091,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -913,6 +1108,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "paid",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {},
       creation_date: "2024-07-09T11:32:40.114246+01:00"
     },
@@ -924,6 +1122,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -938,6 +1139,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -952,6 +1156,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -966,6 +1173,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -980,6 +1190,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -994,6 +1207,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -1008,6 +1224,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -1022,6 +1241,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -1036,6 +1258,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -1050,6 +1275,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -1064,6 +1292,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -1078,6 +1309,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"
@@ -1092,6 +1326,9 @@ export const activitiesMocks = [
       psp_solution_name: "TEST",
       provider_name: "TEST",
       activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
       search_params: {
         client_code: "YSOXTP0M1P",
         client_cin: "JI111920"

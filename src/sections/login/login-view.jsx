@@ -167,14 +167,14 @@ export default function LoginView() {
         >
           <Typography variant="h4">Sign in to Flouci<span style={{color:"#5949F1"}}>BillPay</span></Typography>
 
-          <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            Don’t have an account?
+  {        <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
+            
             <Link variant="subtitle2" sx={{ ml: 0.5 }}>
-              Get started
+            
             </Link>
-          </Typography>
+          </Typography>}
 
-          <Stack direction="row" spacing={2}>
+        {/*   <Stack direction="row" spacing={2}>
             <Button
               fullWidth
               size="large"
@@ -210,7 +210,7 @@ export default function LoginView() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               OR
             </Typography>
-          </Divider>
+          </Divider> */}
 
           {renderForm}
         </Card>

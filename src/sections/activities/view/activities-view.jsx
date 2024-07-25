@@ -24,6 +24,7 @@ import { emptyRows, applyFilter, getComparator } from '../utils';
 import { activitiesMocks } from '../mocks/activities-mocks';
 import DateRangePicker from 'src/components/date-range-picker';
 import { Box } from '@mui/material';
+import label from 'src/components/label';
 
 // ----------------------------------------------------------------------
 
@@ -109,9 +110,9 @@ export default function ActivitiesPage({isBillView = false}) {
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <DateRangePicker />
-          <Button variant="contained" color="inherit">
-          Export
-        </Button>
+         {/*  <Button variant="contained" color="inherit">
+            Export
+          </Button> */}
 
         </Box>
 
@@ -136,13 +137,15 @@ export default function ActivitiesPage({isBillView = false}) {
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: 'activity_type', label: 'Status' },
+                  { id: 'activity_type', label:isBillView == true ?'Status' : 'Type' },
                   { id: 'reference', label: 'Reference' },
                   { id: 'product_id', label: 'Product ID' },
                   { id: 'creation_date', label: 'Date' },
                   { id: 'psp_solution_name', label: 'Solution' },
-                  { id: 'provider_name', label: 'Provider' },
-                  { id: '' },
+                  { id: 'provider_name', label: 'Client Name' },
+                  { id: 'balance_name', label: 'Balance' },
+                  { id: 'amount_name', label: 'Amount' },
+                  { id: 'amount_type', label: 'Amount Type' },
                 ]}
               />
               <TableBody>
@@ -151,13 +154,16 @@ export default function ActivitiesPage({isBillView = false}) {
                   .map((row, index) => (
                     <UserTableRow
                       key={row.id}
-                      status={row.activity_type}
+                      status={isBillView === false ? (row.activity_type === 'rejected' ? 'reserved' : row.activity_type) : row.activity_type}
                       reference={row.reference}
                       productId={row.product_id}
                       date={row.creation_date}
                       solution={row.psp_solution_name}
                       providerName={row.provider_name}
-                      providerAvatar={`/assets/images/avatars/avatar_${index + 1}.jpg`}
+                      balanceName={row.balance}
+                      amountName={row.amount}
+                      amountToPay={row.amount_to_pay}
+                      //providerAvatar={`/assets/images/avatars/avatar_${index + 1}.jpg`}
                       // name={row.client_name}
                       // role={row.role}
                       

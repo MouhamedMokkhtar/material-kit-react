@@ -44,6 +44,8 @@ export default function TokenView() {
   const [selectedSolution, setSelectedSolution] = useState('');
   const [generatedToken, setGeneratedToken] = useState('');
   const [copy, setCopy] = useState(false);
+  const [generatedKeyName, setGeneratedKeyName] = useState('');
+
 
   const handleChange = (event) => {
     setSelectedSolution(event.target.value);
@@ -59,9 +61,20 @@ export default function TokenView() {
     }, 1000);
   };
 
+  const handleKeyNameChange = (event) => {
+    setGeneratedKeyName(event.target.value);
+  };
+
+
   const renderForm = (
     <>
       <Stack spacing={3}>
+      <TextField
+        fullWidth
+        label="Generated Key Name"
+        value={generatedKeyName}
+        onChange={handleKeyNameChange}
+      />
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Fsp Solution</InputLabel>
           <Select

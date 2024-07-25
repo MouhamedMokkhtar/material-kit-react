@@ -21,13 +21,14 @@ import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
 
 import { NAV } from './config-layout';
-import navConfig, { navUserConfig } from './config-navigation';
+import navConfigSP, { navUserConfig , navConfigPSP} from './config-navigation';
 import Telecom from 'src/icons/Telecom';
 import { Divider } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-export default function Nav({ openNav, onCloseNav }) {
+export default function Nav({ openNav, onCloseNav , role}) {
+  const configToRender = role === 'PSP' ? navConfigPSP : navConfigSP;
   const pathname = usePathname();
 
   const upLg = useResponsive('up', 'lg');
@@ -52,13 +53,24 @@ export default function Nav({ openNav, onCloseNav }) {
         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
       }}
     >
-      <Avatar src={"https://play-lh.googleusercontent.com/5mIUQqC5vuuAg0mCf84ScqVPlSJLUJcsPDTq5MbYjh5Yl-kLHDLqGSd3-0GbQeyCyVY"} alt="photoURL" />
+      <Avatar
+        src={
+          role === 'SP'
+            ? "https://play-lh.googleusercontent.com/5mIUQqC5vuuAg0mCf84ScqVPlSJLUJcsPDTq5MbYjh5Yl-kLHDLqGSd3-0GbQeyCyVY"
+            : "https://www.disruptunisia.com/logo/5abdfc4da88d7.png"
+        }
+        alt="photoURL"
+      />
+
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">Topnet</Typography>
+      <Typography variant="subtitle2">
+        {role === 'SP' ? 'Topnet' : 'Flouci'}
+      </Typography>
+
 
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-        Service provider
+        {role === 'SP' ? 'Service provider' : 'Service payment'}
         </Typography>
       </Box>
     </Box>
@@ -66,7 +78,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
-      {navConfig.map((item) => (
+      {configToRender.map((item) => (
         <NavItem key={item.title} item={item} />
       ))}
     </Stack>
@@ -166,6 +178,7 @@ export default function Nav({ openNav, onCloseNav }) {
 Nav.propTypes = {
   openNav: PropTypes.bool,
   onCloseNav: PropTypes.func,
+  role: PropTypes.string.isRequired, 
 };
 
 // ----------------------------------------------------------------------

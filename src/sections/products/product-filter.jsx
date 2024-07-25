@@ -26,8 +26,10 @@ export const SORT_OPTIONS = [
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
 export const GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
-export const CATEGORY_OPTIONS = ['Viewed', 'Paid', 'Reserved', 'Rejected'];
-const FACTORIER_OPTIONS = ['Steg','Sonede','Tunisie autoroute','Topnet']
+export const CATEGORY_OPTIONS = ['invoice', 'Service', 'Recharge'];
+const Avaibility_OPTIONS = ['Available','Not Available']
+const PROMO_OPTIONS = ['With Promo Code','Without Promo Code']
+const FREE_OPTIONS = ['With Free Entry','Without Free Entry']
 export const RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
 export const PRICE_OPTIONS = [
   { value: 'below', label: 'Below $25' },
@@ -47,7 +49,7 @@ export const COLOR_OPTIONS = [
 
 // ----------------------------------------------------------------------
 
-export default function ActivitiesFilter() {
+export default function ProductsFilter() {
   const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
@@ -79,11 +81,33 @@ export default function ActivitiesFilter() {
     </Stack>
   );
 
-  const renderFactorier = (
+  const renderAvaibility = (
     <Stack spacing={1}>
-      <Typography variant="subtitle2">Provider</Typography>
+      <Typography variant="subtitle2">Avaibility</Typography>
       <RadioGroup>
-        {FACTORIER_OPTIONS.map((item) => (
+        {Avaibility_OPTIONS.map((item) => (
+          <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
+        ))}
+      </RadioGroup>
+    </Stack>
+  );
+
+  const renderPromo = (
+    <Stack spacing={1}>
+      <Typography variant="subtitle2">Promo Code</Typography>
+      <RadioGroup>
+        {PROMO_OPTIONS.map((item) => (
+          <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
+        ))}
+      </RadioGroup>
+    </Stack>
+  );
+
+  const renderFreeEntry = (
+    <Stack spacing={1}>
+      <Typography variant="subtitle2">Free Entry</Typography>
+      <RadioGroup>
+        {FREE_OPTIONS.map((item) => (
           <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
         ))}
       </RadioGroup>
@@ -192,7 +216,11 @@ export default function ActivitiesFilter() {
 
             {renderStatus}
 
-            {renderFactorier}
+            {renderAvaibility}
+
+            {renderPromo}
+
+            {renderFreeEntry}
 
             {/* {renderColors}
 

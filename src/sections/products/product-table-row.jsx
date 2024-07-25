@@ -26,6 +26,8 @@ export default function ProductTableRow({
   productId,
   type,
   acceptPromoCode,
+  freeEntry,
+  reserveDelay,
   handleClick,
 }) {
   const [open, setOpen] = useState(null);
@@ -62,6 +64,11 @@ export default function ProductTableRow({
         <TableCell>
         <Switch defaultChecked={acceptPromoCode} /></TableCell>
 
+        <TableCell>
+        <Switch defaultChecked={freeEntry} /></TableCell>
+
+        <TableCell>{reserveDelay}</TableCell>
+       
         {/* <TableCell>{formatDate(new Date(date))}</TableCell> */}
 
         {/* <TableCell>{solution}</TableCell> */}

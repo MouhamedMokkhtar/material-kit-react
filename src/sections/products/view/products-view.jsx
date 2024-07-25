@@ -140,6 +140,8 @@ export default function ProductsPage() {
                   { id: 'product_id', label: 'ID' },
                   { id: 'type', label: 'Type' },
                   { id: 'accept_promo_code', label: 'Promo Code' },
+                  { id: 'free_entry', label: 'Free Entry' },
+                  { id: 'reserve_delay', label: 'Reserve Delay' },
                 //   { id: 'creation_date', label: 'Date' },
                 //   { id: 'psp_solution_name', label: 'Solution' },
                 //   { id: 'provider_name', label: 'Provider' },
@@ -156,7 +158,8 @@ export default function ProductsPage() {
                       productId={row.product_id}
                       type={row.type}
                       acceptPromoCode={row.accept_promo_code}
-                      
+                      freeEntry={row.free_entry}
+                      reserveDelay={row.reserve_delay}
                       selected={selected.indexOf(row.name) !== -1}
                       handleClick={(event) => handleClick(event, row.name)}
                     />

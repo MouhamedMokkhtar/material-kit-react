@@ -3,7 +3,7 @@ export const productsMocks =
     {
       id: 12,
       product_id: "79",
-      type: "invoice",
+      type: "Test",
       accept_promo_code: true,
       lookup_params: {
         client_cin: "^[A-Z]{2}[0-9]{6}$",
@@ -37,7 +37,7 @@ export const productsMocks =
     {
       id: 11,
       product_id: "76",
-      type: "invoice",
+      type: "Test",
       accept_promo_code: true,
       lookup_params: {
         client_cin: "^[A-Z]{2}[0-9]{6}$",
@@ -71,7 +71,7 @@ export const productsMocks =
     {
       id: 10,
       product_id: "77",
-      type: "invoice",
+      type: "Test",
       accept_promo_code: true,
       lookup_params: {
         client_cin: "^[A-Z]{2}[0-9]{6}$",
@@ -105,7 +105,7 @@ export const productsMocks =
     {
       id: 9,
       product_id: "46",
-      type: "invoice",
+      type: "Test",
       accept_promo_code: true,
       lookup_params: {
         client_cin: "^[A-Z]{2}[0-9]{6}$",
@@ -139,7 +139,7 @@ export const productsMocks =
     {
       id: 7,
       product_id: "44",
-      type: "invoice",
+      type: "Test",
       accept_promo_code: true,
       lookup_params: {
         client_cin: "^[A-Z]{2}[0-9]{6}$",

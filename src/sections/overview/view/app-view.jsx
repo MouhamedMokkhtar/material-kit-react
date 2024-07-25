@@ -21,21 +21,21 @@ import AppDonut from '../app-donut';
 // ----------------------------------------------------------------------
 
 export default function AppView({role}) {
-  const isSP = role === "SP";
+  const isSP = role === "PSP";
   return (
     <Container maxWidth="xl">
       <Box sx={isSP ? {} : {display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
       <Typography variant="h3" sx={{ mb: 5 }}>
         Dashboard
       </Typography>
-     {!isSP && <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
+    {/*  {!isSP && <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
           Add new service
-      </Button>}
+      </Button>} */}
       </Box>
      
 
-      <Grid container spacing={3}>
-        <Grid xs={12} sm={4} md={4}>
+      <Grid container spacing={2}>
+        <Grid xs={12} sm={4} md={6}>
           <AppWidgetSummary
             title="Total Revenue"
             currency
@@ -46,23 +46,24 @@ export default function AppView({role}) {
           />
         </Grid>
 
-        <Grid xs={12} sm={4} md={4}>
+        <Grid xs={12} sm={4} md={6}>
           <AppWidgetSummary
-            title="Total PSP"
+            title="Total Number of Transactions"
             total={4}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
+
         </Grid>
 
-        <Grid xs={12} sm={4} md={4}>
+       {isSP && <Grid xs={12} sm={4} md={4}>
           <AppWidgetSummary
-            title="Total Services"
+            title="Total Products"
             total={8}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
           />
-        </Grid>
+        </Grid>}
 
         {/* <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
@@ -109,9 +110,9 @@ export default function AppView({role}) {
             title="Revenue per payment method"
             chart={{
               series: [
-                { label: 'Bank Card', value: 65 },
+                { label: 'Bank Card', value: 55 },
                 { label: 'Wallet payment', value: 35 },
-
+                { label: 'Bank Transfer', value: 10 },
               ],
             }}
           />
@@ -123,8 +124,7 @@ export default function AppView({role}) {
             chart={{
               series: [
                 { label: 'Flouci', value: 65 },
-                { label: 'X Company', value: 25 },
-                { label: 'X Company', value: 10 },
+                { label: 'Test', value: 35 },
 
               ],
             }}
@@ -133,12 +133,11 @@ export default function AppView({role}) {
 
         <Grid xs={12} md={6} lg={6}>
           <AppDonut
-            title="Revenue per services"
+            title="Revenue per product"
             chart={{
               series: [
-                { label: 'Flouci', value: 65 },
-                { label: 'X Company', value: 25 },
-                { label: 'X Company', value: 10 },
+                { label: 'Invoice', value: 65 },
+                { label: 'Test', value: 35 },
 
               ],
             }}

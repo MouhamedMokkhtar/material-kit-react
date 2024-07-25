@@ -11,11 +11,11 @@ import Header from './header';
 
 export default function DashboardLayout({ children }) {
   const [openNav, setOpenNav] = useState(false);
-  
+  const userRole = 'SP';
   return (
     <>
-      <Header onOpenNav={() => setOpenNav(true)} />
-
+      {/* <Header onOpenNav={() => setOpenNav(true)} />
+ */}
       <Box
         sx={{
           minHeight: 1,
@@ -23,7 +23,7 @@ export default function DashboardLayout({ children }) {
           flexDirection: { xs: 'column', lg: 'row' },
         }}
       >
-        <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
+        <Nav role={userRole} openNav={openNav} onCloseNav={() => setOpenNav(false)} />
 
         <Main>{children}</Main>
       </Box>

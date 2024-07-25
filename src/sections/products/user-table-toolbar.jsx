@@ -8,6 +8,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import Iconify from 'src/components/iconify';
+import ProductFilter from './product-filter';
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +26,7 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
         }),
       }}
     >
-      {numSelected > 0 ? (
+      {/* {numSelected > 0 ? (
         <Typography component="div" variant="subtitle1">
           {numSelected} selected
         </Typography>
@@ -44,20 +45,28 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
           }
         />
       )}
+ */}
+     
 
-      {numSelected > 0 ? (
+        <Typography component="div" variant="subtitle1">
+          {''}
+        </Typography>
+
+      <ProductFilter/>
+
+      {numSelected > 0 && (
         <Tooltip title="Delete">
           <IconButton>
             <Iconify icon="eva:trash-2-fill" />
           </IconButton>
         </Tooltip>
-      ) : (
+      ) /* : (
         <Tooltip title="Filter list">
           <IconButton>
             <Iconify icon="ic:round-filter-list" />
           </IconButton>
         </Tooltip>
-      )}
+      ) */}
     </Toolbar>
   );
 }

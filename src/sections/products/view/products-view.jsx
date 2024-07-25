@@ -26,6 +26,7 @@ import { applyFilter, emptyRows, getComparator } from 'src/sections/activities/u
 import TableEmptyRows from 'src/sections/activities/table-empty-rows';
 import { productsMocks } from '../mocks/products-mocks';
 import UserTableToolbar from '../user-table-toolbar';
+import AddProductModal from '../add-product-modal';
 
 // ----------------------------------------------------------------------
 
@@ -41,6 +42,9 @@ export default function ProductsPage() {
   const [filterName, setFilterName] = useState('');
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+
+  const [openModal,setOpenModal] = useState(false);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -109,7 +113,7 @@ export default function ProductsPage() {
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <DateRangePicker />
-          <Button variant="contained" color="inherit">
+          <Button variant="contained" color="inherit" onClick={() => setOpenModal(true)}>
           Add
         </Button>
 
@@ -186,6 +190,7 @@ export default function ProductsPage() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
+      <AddProductModal open={openModal} handleClose={() => setOpenModal(false)}/>
     </Container>
   );
 }

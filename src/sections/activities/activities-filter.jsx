@@ -27,6 +27,7 @@ export const SORT_OPTIONS = [
 ];
 export const GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
 export const CATEGORY_OPTIONS = ['Viewed', 'Paid', 'Reserved', 'Rejected'];
+export const CATEGORY_OPTIONS_BILLS = ['Viewed', 'Paid', 'Reserved', ];
 const FACTORIER_OPTIONS = ['Steg','Sonede','Tunisie autoroute','Topnet']
 export const RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
 export const PRICE_OPTIONS = [
@@ -47,7 +48,7 @@ export const COLOR_OPTIONS = [
 
 // ----------------------------------------------------------------------
 
-export default function ActivitiesFilter() {
+export default function ActivitiesFilter({ isBillView }) {
   const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
@@ -72,7 +73,9 @@ export default function ActivitiesFilter() {
     <Stack spacing={1}>
       <Typography variant="subtitle2">Type</Typography>
       <RadioGroup>
-        {CATEGORY_OPTIONS.map((item) => (
+        {isBillView == true ? CATEGORY_OPTIONS.map((item) => (
+          <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
+        )) : CATEGORY_OPTIONS_BILLS.map((item) => (
           <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
         ))}
       </RadioGroup>

@@ -74,7 +74,7 @@ export default function AppView({role}) {
           />
         </Grid> */}
 
-        <Grid xs={12} md={isSP ? 6 : 12} lg={isSP ? 8 : 12}>
+        <Grid xs={12} md={6} lg={8}>
           <AppWebsiteVisits
             title="Revenue per date"
             // subheader="(+43%) than last year"
@@ -105,7 +105,7 @@ export default function AppView({role}) {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={isSP ? 4 : 6}>
+        <Grid xs={12} md={6} lg={4}>
           <AppCurrentVisits
             title="Revenue per payment method"
             chart={{
@@ -118,7 +118,7 @@ export default function AppView({role}) {
           />
         </Grid>
 
-        {isSP &&<Grid xs={12} md={6} lg={6}>
+        <Grid xs={12} md={6} lg={6}>
           <AppDonut
             title="Revenue per PSP"
             chart={{
@@ -129,7 +129,7 @@ export default function AppView({role}) {
               ],
             }}
           />
-        </Grid>}
+        </Grid>
 
         <Grid xs={12} md={6} lg={6}>
           <AppDonut

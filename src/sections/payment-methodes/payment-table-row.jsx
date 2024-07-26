@@ -3,13 +3,13 @@ import React from 'react'
 
 
 
-const PaymentTableRow = ({wireTransfer, wallet, byCard}) => {
+const PaymentTableRow = ({transfer, wallet, byCard}) => {
   return (
     <TableRow >
    
     
     <TableCell align={"center"}>
-    {wireTransfer}
+    {transfer}
      </TableCell >
 
     <TableCell align={"center"}>{wallet}</TableCell>

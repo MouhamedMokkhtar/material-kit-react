@@ -124,6 +124,7 @@ export default function ActivitiesPage({isBillView = false}) {
           numSelected={selected.length}
           filterName={filterName}
           onFilterName={handleFilterByName}
+          isBillView={isBillView}
         />
 
         <Scrollbar>
@@ -143,9 +144,11 @@ export default function ActivitiesPage({isBillView = false}) {
                   { id: 'creation_date', label: 'Date' },
                   { id: 'psp_solution_name', label: 'Solution' },
                   { id: 'provider_name', label: 'Client Name' },
-                  { id: 'balance_name', label: 'Balance' },
-                  { id: 'amount_name', label: 'Amount' },
-                  { id: 'amount_type', label: 'Amount Type' },
+                  ...(isBillView ? [
+                    { id: 'balance_name', label: 'Balance' },
+                    { id: 'amount_name', label: 'Amount' },
+                    { id: 'amount_type', label: 'Amount Type' },
+                  ] : []),
                 ]}
               />
               <TableBody>
@@ -153,27 +156,22 @@ export default function ActivitiesPage({isBillView = false}) {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => (
                     <UserTableRow
-                      key={row.id}
-                      status={isBillView === false ? (row.activity_type === 'rejected' ? 'reserved' : row.activity_type) : row.activity_type}
-                      reference={row.reference}
-                      productId={row.product_id}
-                      date={row.creation_date}
-                      solution={row.psp_solution_name}
-                      providerName={row.provider_name}
-                      balanceName={row.balance}
-                      amountName={row.amount}
-                      amountToPay={row.amount_to_pay}
-                      //providerAvatar={`/assets/images/avatars/avatar_${index + 1}.jpg`}
-                      // name={row.client_name}
-                      // role={row.role}
-                      
-                      // company={row.company}
-                      // avatarUrl={row.avatarUrl}
-                      // isVerified={row.isVerified}
-                      selected={selected.indexOf(row.name) !== -1}
-                      handleClick={(event) => handleClick(event, row.name)}
-                      isBillView={isBillView}
-                    />
+                    key={row.id}
+                    status={isBillView === false ? (row.activity_type === 'rejected' ? 'reserved' : row.activity_type) : row.activity_type}
+                    reference={row.reference}
+                    productId={row.product_id}
+                    date={row.creation_date}
+                    solution={row.psp_solution_name}
+                    providerName={row.provider_name}
+                    // Conditionally include these fields based on isBillView
+                    balanceName={isBillView ? row.balance : undefined}
+                    amountName={isBillView ? row.amount : undefined}
+                    amountToPay={isBillView ? row.amount_to_pay : undefined}
+                    selected={selected.indexOf(row.name) !== -1}
+                    handleClick={(event) => handleClick(event, row.name)}
+                    isBillView={isBillView}
+                  />
+                  
                   ))}
 
                 <TableEmptyRows

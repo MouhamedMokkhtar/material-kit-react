@@ -13,7 +13,7 @@ import ActivitiesFilter from './activities-filter';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableToolbar({ numSelected, filterName, onFilterName }) {
+export default function UserTableToolbar({ numSelected, filterName, onFilterName, isBillView }) {
   return (
     <Toolbar
       sx={{
@@ -47,7 +47,7 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
         />
       )}
 
-      <ActivitiesFilter/>
+      <ActivitiesFilter isBillView={isBillView}/>
 
       {numSelected > 0 && (
         <Tooltip title="Delete">

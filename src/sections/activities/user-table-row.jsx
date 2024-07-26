@@ -81,9 +81,9 @@ export default function UserTableRow({
           </Stack>
         </TableCell>
 
-        <TableCell>{balanceName}</TableCell>
-        <TableCell>{amountName}</TableCell>
-        <TableCell>{amountToPay}</TableCell>
+        {isBillView && <TableCell>{balanceName}</TableCell> }
+        {isBillView && <TableCell>{amountName}</TableCell> }
+        {isBillView && <TableCell>{amountToPay}</TableCell> }
 
         {/*
         <TableCell>{company}</TableCell>

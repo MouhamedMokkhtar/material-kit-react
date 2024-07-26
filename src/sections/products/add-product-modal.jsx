@@ -129,7 +129,7 @@ const AddProductModal = ({ open, handleClose }) => {
               <TextField
                 label="Reserve delay"
                 id="standard-start-adornment"
-                helperText="helper text here !"
+                //helperText="helper text here !"
               />
             </Grid>
             <Grid item xs={6}>
@@ -259,7 +259,7 @@ const AddProductModal = ({ open, handleClose }) => {
 
             <Grid item xs={6}>
               <TextField
-                label="Free Entry"
+                label="Accepted Amounts"
                 id="standard-start-adornment"
                 fullWidth
                 value={freeEntry}

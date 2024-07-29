@@ -49,8 +49,14 @@ export default function LoginView() {
       setLocalError('Email and Password are required');
       return;
     }
-    console.log('redirecting');
-    navigate('/', { replace: true });
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate('/', { replace: true });
+    }, 2000); // 2 seconds delay
+
+
+
     // setLocalError('');
     // const userBody = {
     //   username: username.trim(),
@@ -61,7 +67,7 @@ export default function LoginView() {
     // dispatch(authUser(userBody))
     // .then(() => {
     //   setLoading(false);
-      
+
     //   router.push('/');
     //   console.log('Login success');
     //   //<Navigate to="/dashboard" />;  
@@ -70,9 +76,9 @@ export default function LoginView() {
     //   console.error('Login failed:', err);
     //   setLocalError('Email or Password are wrong');
     // });
-};
+  };
 
-  
+
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -85,11 +91,11 @@ export default function LoginView() {
   const renderForm = (
     <>
       <Stack spacing={3}>
-        <TextField  value={username}
+        <TextField value={username}
           onChange={handleUsernameChange}
           error={Boolean(localError)}
           helperText={localError ? 'Username and Password are required' : ''}
-          />
+        />
 
         <TextField
           name="password"
@@ -156,25 +162,25 @@ export default function LoginView() {
         }}
       />
       <Grid container spacing={2} sx={{ height: 1 }}>
-  <Grid item xs={6} >
-  <Stack alignItems="center" justifyContent="center" sx={{ height: 1}}>
-        <Card
-          sx={{
-            p: 5,
-            width: 1,
-            maxWidth: 420,
-          }}
-        >
-          <Typography variant="h4">Sign in to Flouci<span style={{color:"#5949F1"}}>BillPay</span></Typography>
+        <Grid item xs={6} >
+          <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
+            <Card
+              sx={{
+                p: 5,
+                width: 1,
+                maxWidth: 420,
+              }}
+            >
+              <Typography variant="h4">Sign in to Flouci<span style={{ color: "#5949F1" }}>BillPay</span></Typography>
 
-  {        <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            
-            <Link variant="subtitle2" sx={{ ml: 0.5 }}>
-            
-            </Link>
-          </Typography>}
+              {<Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
 
-        {/*   <Stack direction="row" spacing={2}>
+                <Link variant="subtitle2" sx={{ ml: 0.5 }}>
+
+                </Link>
+              </Typography>}
+
+              {/*   <Stack direction="row" spacing={2}>
             <Button
               fullWidth
               size="large"
@@ -212,20 +218,20 @@ export default function LoginView() {
             </Typography>
           </Divider> */}
 
-          {renderForm}
-        </Card>
-      </Stack>
-  </Grid>
-  <Grid item xs={6}>
-    <Box sx={{height:1, backgroundColor:"white", display:"flex", justifyContent:"center", alignItems:"center"}}>
-      <img src="/assets/background/overlay_5.svg" alt="login-background" style={{width:"80%"}}/>
+              {renderForm}
+            </Card>
+          </Stack>
+        </Grid>
+        <Grid item xs={6}>
+          <Box sx={{ height: 1, backgroundColor: "white", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <img src="/assets/background/overlay_6.svg" alt="login-background" style={{ width: "80%" }} />
 
-    </Box>
-  </Grid>
-  
-</Grid>
+          </Box>
+        </Grid>
 
-     
+      </Grid>
+
+
     </Box>
   );
 }

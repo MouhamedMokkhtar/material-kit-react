@@ -4,7 +4,7 @@ export const activitiesMocks = [
     {
       id: 134,
       client_name: null ?? faker.person.fullName(),
-      reference: "334783",
+      reference: "334785",
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
@@ -17,7 +17,7 @@ export const activitiesMocks = [
     {
       id: 133,
       client_name: null ?? faker.person.fullName(),
-      reference: "334783",
+      reference: "334786",
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
@@ -30,7 +30,7 @@ export const activitiesMocks = [
     {
       id: 132,
       client_name: null ?? faker.person.fullName(),
-      reference: "334783",
+      reference: "334787",
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
@@ -48,7 +48,7 @@ export const activitiesMocks = [
     {
       id: 131,
       client_name: null ?? faker.person.fullName(),
-      reference: "334783",
+      reference: "334788",
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
@@ -57,7 +57,7 @@ export const activitiesMocks = [
       amount: 2222,
       amount_to_pay: 7721,
       search_params: {
-        reference: "334783",
+        reference: "334789",
         product_id: "44",
         amount: 5000
       },
@@ -66,7 +66,7 @@ export const activitiesMocks = [
     {
       id: 130,
       client_name: null ?? faker.person.fullName(),
-      reference: "334783",
+      reference: "334790",
       product_id: "44",
       psp_solution_name: "TEST",
       provider_name: "TEST",
@@ -1335,4 +1335,81 @@ export const activitiesMocks = [
       },
       creation_date: "2024-07-09T09:59:09.806678+01:00"
     }
+  ]
+
+
+
+  export const activitiesMocksFiltered = [
+    {
+      id: 130,
+      client_name: null ?? faker.person.fullName(),
+      reference: "334781",
+      product_id: "43",
+      psp_solution_name: "TEST",
+      provider_name: "TEST",
+      activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
+      search_params: {
+        reference: "334781",
+        product_id: "44",
+        amount: 5000
+      },
+      creation_date: "2024-07-12T10:31:34.736190+01:00"
+    },
+    {
+      id: 131,
+      client_name: null ?? faker.person.fullName(),
+      reference: "334782",
+      product_id: "43",
+      psp_solution_name: "TEST",
+      provider_name: "TEST",
+      activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
+      search_params: {
+        reference: "334782",
+        product_id: "44",
+        amount: 5000
+      },
+      creation_date: "2024-07-12T10:31:34.736190+01:00"
+    },
+    {
+      id: 132,
+      client_name: null ?? faker.person.fullName(),
+      reference: "334783",
+      product_id: "43",
+      psp_solution_name: "TEST",
+      provider_name: "TEST",
+      activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
+      search_params: {
+        reference: "334783",
+        product_id: "44",
+        amount: 5000
+      },
+      creation_date: "2024-07-12T10:31:34.736190+01:00"
+    },
+    {
+      id: 133,
+      client_name: null ?? faker.person.fullName(),
+      reference: "334784",
+      product_id: "43",
+      psp_solution_name: "TEST",
+      provider_name: "TEST",
+      activity_type: "viewed",
+      balance: 1111,
+      amount: 2222,
+      amount_to_pay: 7721,
+      search_params: {
+        reference: "334784",
+        product_id: "44",
+        amount: 5000
+      },
+      creation_date: "2024-07-12T10:31:34.736190+01:00"
+    },
   ]

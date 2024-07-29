@@ -9,10 +9,13 @@ import {
   Modal,
   Stack,
   TextField,
+  IconButton,
+  InputAdornment,
 } from '@mui/material';
+import Iconify from 'src/components/iconify';
 import React, { useState } from 'react';
 
-const PaymentModal = ({ open, handleClose, handleAdd ,selectedMethode }) => {
+const PaymentModal = ({ open, handleClose, handleAdd, selectedMethode }) => {
   console.log('selectedMethode', selectedMethode);
 
   const [rib, setRib] = useState('');
@@ -24,6 +27,7 @@ const PaymentModal = ({ open, handleClose, handleAdd ,selectedMethode }) => {
 
   const [smtName, setSmtName] = useState('');
   const [smtPassword, setSmtPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [activeAccount, setActiveAccount] = useState(false);
 
@@ -82,9 +86,9 @@ const PaymentModal = ({ open, handleClose, handleAdd ,selectedMethode }) => {
     }
     onClose();
   };
-  
-  
-  
+
+
+
 
   const style = {
     position: 'absolute',
@@ -93,7 +97,7 @@ const PaymentModal = ({ open, handleClose, handleAdd ,selectedMethode }) => {
     transform: 'translate(-50%, -50%)',
     p: 4,
     display: 'flex',
-    width:450,
+    width: 450,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
@@ -106,99 +110,109 @@ const PaymentModal = ({ open, handleClose, handleAdd ,selectedMethode }) => {
       aria-describedby="modal-modal-description"
     >
       <Card sx={style}>
-        <CardContent sx={{width:"100%"}}>
-        <Stack spacing={3}>
+        <CardContent sx={{ width: "100%" }}>
+          <Stack spacing={3}>
 
-          {selectedMethode === 0 && (
-            <>
-              <TextField
-                name="rib"
-                label="Rib"
-                value={rib}
-                onChange={handleRibChange}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={activeAccount}
-                    onChange={handleActiveAccountChange}
-                  />
-                }
-                label="Compte Activé"
-              />
-            </>
-          )}
+            {selectedMethode === 0 && (
+              <>
+                <TextField
+                  name="rib"
+                  label="Rib"
+                  value={rib}
+                  onChange={handleRibChange}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={activeAccount}
+                      onChange={handleActiveAccountChange}
+                    />
+                  }
+                  label="Compte Activé"
+                />
+              </>
+            )}
 
-          {selectedMethode === 1 && (
-            <>
-              <TextField
-                name="phoneNumber"
-                label="Phone Number"
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-              />
-              <TextField
-                name="public_key"
-                label="Public Key"
-                value={publicKey}
-                onChange={handlePublicKeyChange}
-              />
-              <TextField
-                name="switch_id"
-                label="Switch ID"
-                value={switchId}
-                onChange={handleSwitchIdChange}
-              />
-              <TextField
-                name="tracking_id"
-                label="Tracking ID"
-                value={trackingId}
-                onChange={handleTrackingIdChange}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={activeAccount}
-                    onChange={handleActiveAccountChange}
-                  />
-                }
-                label="Compte Activé"
-              />
-            </>
-          )}
+            {selectedMethode === 1 && (
+              <>
+                <TextField
+                  name="phoneNumber"
+                  label="Phone Number"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                />
+                <TextField
+                  name="public_key"
+                  label="Public Key"
+                  value={publicKey}
+                  onChange={handlePublicKeyChange}
+                />
+                <TextField
+                  name="switch_id"
+                  label="Switch ID"
+                  value={switchId}
+                  onChange={handleSwitchIdChange}
+                />
+                <TextField
+                  name="tracking_id"
+                  label="Tracking ID"
+                  value={trackingId}
+                  onChange={handleTrackingIdChange}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={activeAccount}
+                      onChange={handleActiveAccountChange}
+                    />
+                  }
+                  label="Compte Activé"
+                />
+              </>
+            )}
 
-          {selectedMethode === 2 && (
-            <>
-              <TextField
-                name="Smt Name"
-                label="Smt Name"
-                value={smtName}
-                onChange={handleSmtNameChange}
-              />
-              <TextField
-                name="Smt Password"
-                label="Smt Password"
-                value={smtPassword}
-                onChange={handleSmtPasswordChange}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={activeAccount}
-                    onChange={handleActiveAccountChange}
-                  />
-                }
-                label="Compte Activé"
-              />
-            </>
-          )}
-        </Stack>
+            {selectedMethode === 2 && (
+              <>
+                <TextField
+                  name="Smt Name"
+                  label="Smt Name"
+                  value={smtName}
+                  onChange={handleSmtNameChange}
+                />
+                <TextField
+                  name="Smt Password"
+                  label="Smt Password"
+                  type={showPassword ? 'text' : 'password'}
+                  value={smtPassword}
+                  onChange={handleSmtPasswordChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                          <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={activeAccount}
+                      onChange={handleActiveAccountChange}
+                    />
+                  }
+                  label="Compte Activé"
+                />
+              </>
+            )}
+          </Stack>
         </CardContent>
         <CardActions>
-          <Button variant="outlined" onClick={onClose} sx={{px:3, py:1}}>
+          <Button variant="outlined" onClick={onClose} sx={{ px: 3, py: 1 }}>
             Close
           </Button>
-          <Button variant="contained" onClick={onHandleAdd} sx={{px:3, py:1}}>
+          <Button variant="contained" onClick={onHandleAdd} sx={{ px: 3, py: 1 }}>
             Add
           </Button>
         </CardActions>

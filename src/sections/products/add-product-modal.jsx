@@ -46,7 +46,7 @@ const lookupParamsOptions = {
   client_name: 'Client Name',
 };
 
-const AddProductModal = ({ open, handleClose }) => {
+const AddProductModal = ({ open, handleClose  }) => {
   const [type, setType] = React.useState('');
   const [lookupParams, setLookupParams] = React.useState('');
   const [regex, setRegex] = React.useState('');
@@ -119,8 +119,8 @@ const AddProductModal = ({ open, handleClose }) => {
                   onChange={handleChange}
                 >
                   <MenuItem value={'invoice'}>Invoice</MenuItem>
-                  <MenuItem value={'subscription'}>Subscription</MenuItem>
                   <MenuItem value={'service'}>Service</MenuItem>
+                  <MenuItem value={'service'}>Recharge</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

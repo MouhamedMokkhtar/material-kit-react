@@ -16,6 +16,10 @@ import { alpha, useTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useDispatch, useSelector } from 'react-redux';
 import { authUser } from 'src/store/Auth/auth.action';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 
 import { useRouter } from 'src/routes/hooks';
 
@@ -24,6 +28,8 @@ import { bgGradient } from 'src/theme/css';
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 import { Navigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+
 
 // ----------------------------------------------------------------------
 
@@ -39,24 +45,38 @@ export default function ResetPasswordView() {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [newPassword, setNewPassword] = useState('');
 
-  const [showRepeatedPassword, setShowRepeatedPassword ] = useState(false);
+  const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
   const [repeatedPassword, setRepeatedPassword] = useState('');
 
   const [username, setUsername] = useState('');
-  
+
   const [loading, setLoading] = useState(false);
   const [localError, setLocalError] = useState('');
 
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
+  const [openModal, setOpenModal] = useState(false);
+
+
   const handleClick = () => {
     if (!currentPassword?.trim()?.length || !newPassword?.trim().length || !repeatedPassword?.trim().length) {
-      setLocalError('inputs are required');
+      setLocalError('Inputs are required');
       return;
     }
+
     setLocalError('');
     setLoading(true);
-    setTimeout(()=>{
+
+    setTimeout(() => {
+      setCurrentPassword('');
+      setNewPassword('');
+      setRepeatedPassword('');
       setLoading(false);
-    },1500)
+
+      setOpenModal(true);
+
+    }, 1500);
     // const userBody = {
     //   currentPassword: currentPassword.trim(),
     //   newPassword: newPassword.trim(),
@@ -66,7 +86,7 @@ export default function ResetPasswordView() {
     // dispatch(authUser(userBody))
     // .then(() => {
     //   setLoading(false);
-      
+
     //   router.push('/');
     //   console.log('Login success');
     //   //<Navigate to="/dashboard" />;  
@@ -75,9 +95,9 @@ export default function ResetPasswordView() {
     //   console.error('Login failed:', err);
     //   setLocalError('Email or Password are wrong');
     // });
-};
+  };
 
-  
+
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -158,7 +178,7 @@ export default function ResetPasswordView() {
               </InputAdornment>
             ),
           }}
-       
+
         />
 
 
@@ -178,7 +198,7 @@ export default function ResetPasswordView() {
       </Stack> */}
 
       <LoadingButton
-        sx={{mt:5}}
+        sx={{ mt: 5 }}
         fullWidth
         size="large"
         type="submit"
@@ -189,6 +209,25 @@ export default function ResetPasswordView() {
       >
         Change Password
       </LoadingButton>
+
+      <Dialog
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        aria-labelledby="success-dialog-title"
+        aria-describedby="success-dialog-description"
+      >
+        <DialogTitle id="success-dialog-title">Success</DialogTitle>
+        <DialogContent>
+          <Typography id="success-dialog-description">
+            Password changed successfully!
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenModal(false)} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 
@@ -211,7 +250,7 @@ export default function ResetPasswordView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4" sx={{mb:5}}>Change Password</Typography>
+          <Typography variant="h4" sx={{ mb: 5 }}>Change Password</Typography>
 
           {/* <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
             Don’t have an account?

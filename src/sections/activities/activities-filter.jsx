@@ -29,6 +29,8 @@ export const GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
 export const CATEGORY_OPTIONS = ['Viewed', 'Paid', 'Reserved', 'Rejected'];
 export const CATEGORY_OPTIONS_BILLS = ['Viewed', 'Paid', 'Reserved', ];
 const FACTORIER_OPTIONS = ['Steg','Sonede','Tunisie autoroute','Topnet']
+const FSP_OPTIONS = ['Flouci','Test']
+const SOLUTION_OPTIONS = ['TEST']
 export const RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
 export const PRICE_OPTIONS = [
   { value: 'below', label: 'Below $25' },
@@ -48,16 +50,24 @@ export const COLOR_OPTIONS = [
 
 // ----------------------------------------------------------------------
 
-export default function ActivitiesFilter({ isBillView }) {
+export default function ActivitiesFilter ({ isBillView, onApplyFilter, setLoading }) {
+  const userRole = 'SP';
   const [openFilter, setOpenFilter] = useState(false);
+  const [selectedType, setSelectedType] = useState('');
 
   const handleOpenFilter = () => {
     setOpenFilter(true);
   };
 
+
   const handleCloseFilter = () => {
+    setLoading(true);
     setOpenFilter(false);
+    setTimeout(() => {
+      onApplyFilter(); // Call the function passed down from ActivitiesPage
+    }, 500);
   };
+
   const renderGender = (
     <Stack spacing={1}>
       <Typography variant="subtitle2">Gender</Typography>
@@ -87,6 +97,28 @@ export default function ActivitiesFilter({ isBillView }) {
       <Typography variant="subtitle2">Provider</Typography>
       <RadioGroup>
         {FACTORIER_OPTIONS.map((item) => (
+          <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
+        ))}
+      </RadioGroup>
+    </Stack>
+  );
+
+  const renderFsp = (
+    <Stack spacing={1}>
+      <Typography variant="subtitle2">FSP</Typography>
+      <RadioGroup>
+        {FSP_OPTIONS.map((item) => (
+          <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
+        ))}
+      </RadioGroup>
+    </Stack>
+  );
+
+  const renderSolution = (
+    <Stack spacing={1}>
+      <Typography variant="subtitle2">Solution</Typography>
+      <RadioGroup>
+        {SOLUTION_OPTIONS.map((item) => (
           <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
         ))}
       </RadioGroup>
@@ -195,7 +227,9 @@ export default function ActivitiesFilter({ isBillView }) {
 
             {renderStatus}
 
-            {renderFactorier}
+            {userRole =='psp' ? renderFactorier : renderFsp}
+
+            {renderSolution}
 
             {/* {renderColors}
 

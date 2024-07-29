@@ -16,7 +16,7 @@ import Scrollbar from 'src/components/scrollbar';
 
 
 import DateRangePicker from 'src/components/date-range-picker';
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import ProductTableRow from '../product-table-row';
 import TableNoData from '../../activities/table-no-data';
 import UserTableHead from '../../activities/user-table-head';
@@ -24,7 +24,7 @@ import UserTableHead from '../../activities/user-table-head';
 import { activitiesMocks } from 'src/sections/activities/mocks/activities-mocks';
 import { applyFilter, emptyRows, getComparator } from 'src/sections/activities/utils';
 import TableEmptyRows from 'src/sections/activities/table-empty-rows';
-import { productsMocks } from '../mocks/products-mocks';
+import { productsMocks, productsMocksNew } from '../mocks/products-mocks';
 import UserTableToolbar from '../user-table-toolbar';
 import AddProductModal from '../add-product-modal';
 
@@ -43,8 +43,11 @@ export default function ProductsPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(productsMocks);
 
-  const [openModal,setOpenModal] = useState(false);
+
+  const [openModal, setOpenModal] = useState(false);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -95,9 +98,18 @@ export default function ProductsPage() {
     setFilterName(event.target.value);
   };
 
+  const handleAddProduct = (newProduct) => {
+    setLoading(true);
+    setOpenModal(false)
+    setTimeout(() => {
+      setData(productsMocksNew);
+      setLoading(false);
+    }, 1000);
+  };
+
   const dataFiltered = applyFilter({
     //inputData: users,
-    inputData: productsMocks,
+    inputData: data,
     comparator: getComparator(order, orderBy),
     filterName,
   });
@@ -107,19 +119,19 @@ export default function ProductsPage() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-      <Typography variant="h3">
-        Products
-      </Typography>
+        <Typography variant="h3">
+          Products
+        </Typography>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <DateRangePicker />
           <Button variant="contained" color="inherit" onClick={() => setOpenModal(true)}>
-          Add
-        </Button>
+            Add
+          </Button>
 
         </Box>
 
-       
+
       </Stack>
 
       <Card>
@@ -131,52 +143,58 @@ export default function ProductsPage() {
 
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
-            <Table sx={{ minWidth: 800 }}>
-              <UserTableHead
-                order={order}
-                orderBy={orderBy}
-                rowCount={productsMocks.length}
-                numSelected={selected.length}
-                onRequestSort={handleSort}
-                onSelectAllClick={handleSelectAllClick}
-                headLabel={[
-                  { id: 'is_available', label: 'Availability' },
-                  { id: 'product_id', label: 'ID' },
-                  { id: 'type', label: 'Type' },
-                  { id: 'accept_promo_code', label: 'Promo Code' },
-                  { id: 'free_entry', label: 'Free Entry' },
-                  { id: 'reserve_delay', label: 'Reserve Delay' },
-                //   { id: 'creation_date', label: 'Date' },
-                //   { id: 'psp_solution_name', label: 'Solution' },
-                //   { id: 'provider_name', label: 'Provider' },
-                  { id: '' },
-                ]}
-              />
-              <TableBody>
-                {dataFiltered
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row, index) => (
-                    <ProductTableRow
-                      key={row.id}
-                      isAvailable={row.is_available}
-                      productId={row.product_id}
-                      type={row.type}
-                      acceptPromoCode={row.accept_promo_code}
-                      freeEntry={row.free_entry}
-                      reserveDelay={row.reserve_delay}
-                      selected={selected.indexOf(row.name) !== -1}
-                      handleClick={(event) => handleClick(event, row.name)}
-                    />
-                  ))}
-
-                <TableEmptyRows
-                  height={77}
-                  emptyRows={emptyRows(page, rowsPerPage, productsMocks.length)}
+            {loading ? (
+              <Box display="flex" justifyContent="center" p={5}>
+                <CircularProgress />
+              </Box>
+            ) :
+              <Table sx={{ minWidth: 800 }}>
+                <UserTableHead
+                  order={order}
+                  orderBy={orderBy}
+                  rowCount={productsMocks.length}
+                  numSelected={selected.length}
+                  onRequestSort={handleSort}
+                  onSelectAllClick={handleSelectAllClick}
+                  headLabel={[
+                    { id: 'is_available', label: 'Availability' },
+                    { id: 'product_id', label: 'ID' },
+                    { id: 'type', label: 'Type' },
+                    { id: 'accept_promo_code', label: 'Promo Code' },
+                    { id: 'free_entry', label: 'Free Entry' },
+                    { id: 'reserve_delay', label: 'Reserve Delay' },
+                    //   { id: 'creation_date', label: 'Date' },
+                    //   { id: 'psp_solution_name', label: 'Solution' },
+                    //   { id: 'provider_name', label: 'Provider' },
+                    { id: '' },
+                  ]}
                 />
+                <TableBody>
+                  {data
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => (
+                      <ProductTableRow
+                        key={row.id}
+                        isAvailable={row.is_available}
+                        productId={row.product_id}
+                        type={row.type}
+                        acceptPromoCode={row.accept_promo_code}
+                        freeEntry={row.free_entry}
+                        reserveDelay={row.reserve_delay}
+                        selected={selected.indexOf(row.name) !== -1}
+                        handleClick={(event) => handleClick(event, row.name)}
+                      />
+                    ))}
 
-                {notFound && <TableNoData query={filterName} />}
-              </TableBody>
-            </Table>
+                  <TableEmptyRows
+                    height={77}
+                    emptyRows={emptyRows(page, rowsPerPage, productsMocks.length)}
+                  />
+
+                  {notFound && <TableNoData query={filterName} />}
+                </TableBody>
+              </Table>
+            }
           </TableContainer>
         </Scrollbar>
 
@@ -190,7 +208,7 @@ export default function ProductsPage() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
-      <AddProductModal open={openModal} handleClose={() => setOpenModal(false)}/>
+      <AddProductModal open={openModal} handleClose={handleAddProduct} />
     </Container>
   );
 }

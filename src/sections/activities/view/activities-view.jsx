@@ -21,14 +21,14 @@ import UserTableHead from '../user-table-head';
 import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
-import { activitiesMocks } from '../mocks/activities-mocks';
+import { activitiesMocks, activitiesMocksFiltered } from '../mocks/activities-mocks';
 import DateRangePicker from 'src/components/date-range-picker';
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import label from 'src/components/label';
 
 // ----------------------------------------------------------------------
 
-export default function ActivitiesPage({isBillView = false}) {
+export default function ActivitiesPage({ isBillView = false }) {
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -40,6 +40,9 @@ export default function ActivitiesPage({isBillView = false}) {
   const [filterName, setFilterName] = useState('');
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const [loading, setLoading] = useState(false); // Add loading state
+  const [data, setData] = useState(activitiesMocks); // Add data state
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -88,15 +91,26 @@ export default function ActivitiesPage({isBillView = false}) {
   };
 
   const handleFilterByName = (event) => {
-    setPage(0);
     setFilterName(event.target.value);
+    console.log(event.target.value);
+    setData(data.filter((item) =>
+      item.reference.toLowerCase().includes(event.target.value)
+    ))
+  };
+
+  const handleApplyFilter = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setData(activitiesMocksFiltered); // Replace with your filtered data
+      setLoading(false);
+    }, 500);
   };
 
   const dataFiltered = applyFilter({
     //inputData: users,
-    inputData: activitiesMocks,
+    inputData: data,
     comparator: getComparator(order, orderBy),
-    filterName,
+
   });
 
   const notFound = !dataFiltered.length && !!filterName;
@@ -104,19 +118,19 @@ export default function ActivitiesPage({isBillView = false}) {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-      <Typography variant="h3">
-        {!isBillView ? "Activities" : "Bills"}
-      </Typography>
+        <Typography variant="h3">
+          {!isBillView ? "Activities" : "Bills"}
+        </Typography>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <DateRangePicker />
-         {/*  <Button variant="contained" color="inherit">
+          {/*  <Button variant="contained" color="inherit">
             Export
           </Button> */}
 
         </Box>
 
-       
+
       </Stack>
 
       <Card>
@@ -125,63 +139,75 @@ export default function ActivitiesPage({isBillView = false}) {
           filterName={filterName}
           onFilterName={handleFilterByName}
           isBillView={isBillView}
+          onApplyFilter={handleApplyFilter}
+          setLoading={setLoading}
+
         />
 
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
-            <Table sx={{ minWidth: 800 }}>
-              <UserTableHead
-                order={order}
-                orderBy={orderBy}
-                rowCount={activitiesMocks.length}
-                numSelected={selected.length}
-                onRequestSort={handleSort}
-                onSelectAllClick={handleSelectAllClick}
-                headLabel={[
-                  { id: 'activity_type', label:isBillView == true ?'Status' : 'Type' },
-                  { id: 'reference', label: 'Reference' },
-                  { id: 'product_id', label: 'Product ID' },
-                  { id: 'creation_date', label: 'Date' },
-                  { id: 'psp_solution_name', label: 'Solution' },
-                  { id: 'provider_name', label: 'Client Name' },
-                  ...(isBillView ? [
-                    { id: 'balance_name', label: 'Balance' },
-                    { id: 'amount_name', label: 'Amount' },
-                    { id: 'amount_type', label: 'Amount Type' },
-                  ] : []),
-                ]}
-              />
-              <TableBody>
-                {dataFiltered
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row, index) => (
-                    <UserTableRow
-                    key={row.id}
-                    status={isBillView === false ? (row.activity_type === 'rejected' ? 'reserved' : row.activity_type) : row.activity_type}
-                    reference={row.reference}
-                    productId={row.product_id}
-                    date={row.creation_date}
-                    solution={row.psp_solution_name}
-                    providerName={row.provider_name}
-                    // Conditionally include these fields based on isBillView
-                    balanceName={isBillView ? row.balance : undefined}
-                    amountName={isBillView ? row.amount : undefined}
-                    amountToPay={isBillView ? row.amount_to_pay : undefined}
-                    selected={selected.indexOf(row.name) !== -1}
-                    handleClick={(event) => handleClick(event, row.name)}
-                    isBillView={isBillView}
-                  />
-                  
-                  ))}
-
-                <TableEmptyRows
-                  height={77}
-                  emptyRows={emptyRows(page, rowsPerPage, activitiesMocks.length)}
+            {loading ? (
+              <Box display="flex" justifyContent="center" p={5}>
+                <CircularProgress />
+              </Box>
+            ) : (
+              <Table sx={{ minWidth: 800 }}>
+                <UserTableHead
+                  order={order}
+                  orderBy={orderBy}
+                  rowCount={data.length}
+                  numSelected={selected.length}
+                  onRequestSort={handleSort}
+                  onSelectAllClick={handleSelectAllClick}
+                  headLabel={[
+                    { id: 'activity_type', label: isBillView ? 'Status' : 'Type' },
+                    { id: 'reference', label: 'Reference' },
+                    { id: 'product_id', label: 'Product ID' },
+                    { id: 'creation_date', label: 'Date' },
+                    { id: 'psp_solution_name', label: 'Solution' },
+                    { id: 'provider_name', label: 'Client Name' },
+                    ...(isBillView
+                      ? [
+                        { id: 'balance_name', label: 'Balance' },
+                        { id: 'amount_name', label: 'Amount' },
+                        { id: 'amount_type', label: 'Amount Type' },
+                      ]
+                      : []),
+                  ]}
                 />
+                <TableBody>
+                  {dataFiltered
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => (
+                      <UserTableRow
+                        key={row.id}
+                        status={
+                          isBillView === false
+                            ? row.activity_type === 'rejected'
+                              ? 'reserved'
+                              : row.activity_type
+                            : row.activity_type
+                        }
+                        reference={row.reference}
+                        productId={row.product_id}
+                        date={row.creation_date}
+                        solution={row.psp_solution_name}
+                        providerName={row.provider_name}
+                        balanceName={isBillView ? row.balance : undefined}
+                        amountName={isBillView ? row.amount : undefined}
+                        amountToPay={isBillView ? row.amount_to_pay : undefined}
+                        selected={selected.indexOf(row.name) !== -1}
+                        handleClick={(event) => handleClick(event, row.name)}
+                        isBillView={isBillView}
+                      />
+                    ))}
 
-                {notFound && <TableNoData query={filterName} />}
-              </TableBody>
-            </Table>
+                  <TableEmptyRows height={77} emptyRows={emptyRows(page, rowsPerPage, data.length)} />
+
+                  {notFound && <TableNoData query={filterName} />}
+                </TableBody>
+              </Table>
+            )}
           </TableContainer>
         </Scrollbar>
 

@@ -192,7 +192,7 @@ export default function SandboxPage() {
           </TableContainer>
         </Scrollbar>
 
-        <TablePagination
+       {/*  <TablePagination
           page={page}
           component="div"
           count={sandMocks.length}
@@ -200,7 +200,7 @@ export default function SandboxPage() {
           onPageChange={handleChangePage}
           rowsPerPageOptions={[5, 10, 25]}
           onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        /> */}
       </Card>
     </Container>
   );

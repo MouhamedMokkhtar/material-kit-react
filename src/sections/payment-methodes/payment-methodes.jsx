@@ -24,7 +24,7 @@ const PaymentMethodsView = () => {
   const [byCardAccounts, setByCardAccounts] = useState([]);
   const [transfertAccounts, setTransfertAccounts] = useState([]);
   const [walletAccounts, setWalletAccounts] = useState([]);
-  const [open,setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const [selectedMethode, setSelectedMethode] = useState(0);
   const [accounts, setAccounts] = useState({
     0: [], // For transfer accounts
@@ -37,15 +37,15 @@ const PaymentMethodsView = () => {
     setOpen(true)
   };
 
-/*   const handleAdd = (newAccounts) => {
-    if (selectedMethode === 0) {
-      setTransfertAccounts(newAccounts);
-    } else if (selectedMethode === 1) {
-      setWalletAccounts(newAccounts);
-    }else if (selectedMethode === 2) {
-      setByCardAccounts(newAccounts);
-    }
-  }; */
+  /*   const handleAdd = (newAccounts) => {
+      if (selectedMethode === 0) {
+        setTransfertAccounts(newAccounts);
+      } else if (selectedMethode === 1) {
+        setWalletAccounts(newAccounts);
+      }else if (selectedMethode === 2) {
+        setByCardAccounts(newAccounts);
+      }
+    }; */
 
   const handleAdd = (newAccount) => {
     setAccounts((prev) => ({
@@ -53,10 +53,12 @@ const PaymentMethodsView = () => {
       [selectedMethode]: [...prev[selectedMethode], newAccount],
     }));
   };
-  
-  
-  
-  
+
+  const maskPassword = (password) => {
+    return password.split('').map(() => '•').join('');
+  };
+
+
 
   const handleClick = (index) => {
     setSelectedMethode(index);
@@ -76,7 +78,7 @@ const PaymentMethodsView = () => {
         { id: 'trackingId', label: 'Tracking ID' },
         { id: 'status', label: 'Status' },
       ];
-    }else if(selectedMethode === 2){
+    } else if (selectedMethode === 2) {
       return [
         { id: 'smtName', label: 'Smt Name' },
         { id: 'smtPassword', label: 'Smt Password' },
@@ -88,7 +90,7 @@ const PaymentMethodsView = () => {
 
   const renderTableRows = () => {
     const rows = accounts[selectedMethode] || [];
-  
+
     return rows.map((row, index) => (
       <TableRow key={index}>
         {selectedMethode === 0 && (
@@ -109,14 +111,17 @@ const PaymentMethodsView = () => {
         {selectedMethode === 2 && (
           <>
             <TableCell align="center">{row.smtName}</TableCell>
-            <TableCell align="center">{row.smtPassword}</TableCell>
+            <TableCell align="center">
+              <Typography>{maskPassword(row.smtPassword)}</Typography>
+            </TableCell>
+            {/* <TableCell align="center">{row.smtPassword}</TableCell> */}
             <TableCell align="center">{row.compteActive ? 'Active' : 'Inactive'}</TableCell>
           </>
         )}
       </TableRow>
     ));
   };
-  
+
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -131,53 +136,53 @@ const PaymentMethodsView = () => {
             justifyContent: 'space-between',
           }}
         >
-        <ButtonGroup variant="outlined" aria-label="Basic button group">
-          {['Transfer', 'Wallet', 'By Card'].map((label, index) => (
-         <Button
-          key={label}
-          onClick={() => handleClick(index)}
-          sx={{
-            px: 8, // Increase horizontal padding
-            ...(selectedMethode === index && {
-              bgcolor: 'primary.main',
-              color: 'white', 
-              borderColor: 'primary.main', 
-              '&:hover': {
-                bgcolor: 'primary.dark', 
-                borderColor: 'primary.dark', 
-              },
-            }),
-          }}
-        >
-          {label}
-        </Button>
-      ))}
-        </ButtonGroup>
+          <ButtonGroup variant="outlined" aria-label="Basic button group">
+            {['Transfer', 'Wallet', 'By Card'].map((label, index) => (
+              <Button
+                key={label}
+                onClick={() => handleClick(index)}
+                sx={{
+                  px: 8, // Increase horizontal padding
+                  ...(selectedMethode === index && {
+                    bgcolor: 'primary.main',
+                    color: 'white',
+                    borderColor: 'primary.main',
+                    '&:hover': {
+                      bgcolor: 'primary.dark',
+                      borderColor: 'primary.dark',
+                    },
+                  }),
+                }}
+              >
+                {label}
+              </Button>
+            ))}
+          </ButtonGroup>
 
           <Button variant="contained" color="inherit" sx={{ ml: 'auto' }} onClick={onAddAccount}>
             Add an account
           </Button>
         </Toolbar>
 
-  
+
 
 
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ width: '100%' }}>
-            <PaymentTableHead headLabel={getTableHeaders()} />
-            <TableBody>
-            {renderTableRows()}
-          </TableBody>
+              <PaymentTableHead headLabel={getTableHeaders()} />
+              <TableBody>
+                {renderTableRows()}
+              </TableBody>
             </Table>
           </TableContainer>
         </Scrollbar>
       </Card>
       <PaymentModal
-      open={open}
-      handleClose={()=>setOpen(false)}
-      handleAdd={handleAdd}
-      selectedMethode={selectedMethode}
+        open={open}
+        handleClose={() => setOpen(false)}
+        handleAdd={handleAdd}
+        selectedMethode={selectedMethode}
       />
     </Container>
   );
